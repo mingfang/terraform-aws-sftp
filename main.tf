@@ -88,7 +88,7 @@ data "aws_iam_policy_document" "write_only" {
 }
 
 resource "aws_iam_role" "write_only" {
-  name               = "sftp_${aws_transfer_server.transfer_server_public.id}_only"
+  name               = "sftp_${aws_transfer_server.transfer_server_public.id}_write_only"
   assume_role_policy = data.aws_iam_policy_document.transfer_server_assume_role.json
 }
 
