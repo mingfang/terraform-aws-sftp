@@ -1,3 +1,4 @@
 output "key" {
-  value = tls_private_key.key
+  value     = tls_private_key.key
+  sensitive = true
 }
