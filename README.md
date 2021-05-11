@@ -3,16 +3,24 @@ Terraform Module To Create AWS Managed SFTP Server
 
 ## Example To Create Users
 ```terraform
+/* Create SFTP Server */
+
+module "sftp" {
+  source = "git::https://github.com/mingfang/terraform-aws-sftp.git"
+}
+
+/* Users */
+
 locals {
   folder = "dropbox"
 }
 
 module "mingfang" {
-  source = "./user"
+  source = "git::https://github.com/mingfang/terraform-aws-sftp.git//user"
   user_name = "mingfang"
-  role = aws_iam_role.write_only.arn
-  server_id = aws_transfer_server.transfer_server_public.id
-  s3_bucket_id = aws_s3_bucket.bucket.id
+  role = module.sftp.write_only_permissions_role.arn
+  server_id = module.sftp.transfer_server_public.id
+  s3_bucket_id = module.sftp.s3_bucket.id
   folder = local.folder
 }
 
@@ -23,11 +31,11 @@ resource "local_file" "mingfang" {
 }
 
 module "superuser" {
-  source = "./user"
+  source = "git::https://github.com/mingfang/terraform-aws-sftp.git//user"
   user_name = "superuser"
-  role = aws_iam_role.all.arn
-  server_id = aws_transfer_server.transfer_server_public.id
-  s3_bucket_id = aws_s3_bucket.bucket.id
+  role = module.sftp.all_permissions_role.arn
+  server_id = module.sftp.transfer_server_public.id
+  s3_bucket_id = module.sftp.s3_bucket.id
   folder = local.folder
 }
 
@@ -36,5 +44,4 @@ resource "local_file" "superuser" {
   filename        = "superuser.pem"
   file_permission = "0600"
 }
-
 ```
