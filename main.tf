@@ -81,6 +81,7 @@ data "aws_iam_policy_document" "write_only" {
     actions = [
       "s3:GetObject",
       "s3:PutObject",
+      "s3:ListBucket",
     ]
 
     resources = ["*"]
