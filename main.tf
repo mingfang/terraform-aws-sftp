@@ -48,12 +48,12 @@ data "aws_iam_policy_document" "logging" {
 }
 
 resource "aws_iam_role" "logging" {
-  name               = "${var.bucket_prefix}-${aws_transfer_server.transfer_server_public.id}-logging"
+  name               = "${var.bucket_prefix}-logging"
   assume_role_policy = data.aws_iam_policy_document.transfer_server_assume_role.json
 }
 
 resource "aws_iam_role_policy" "logging" {
-  name   = "${var.bucket_prefix}-${aws_transfer_server.transfer_server_public.id}-logging"
+  name   = "${var.bucket_prefix}-logging"
   role   = aws_iam_role.logging.name
   policy = data.aws_iam_policy_document.logging.json
 }
@@ -89,12 +89,12 @@ data "aws_iam_policy_document" "write_only" {
 }
 
 resource "aws_iam_role" "write_only" {
-  name               = "${var.bucket_prefix}-${aws_transfer_server.transfer_server_public.id}-write_only"
+  name               = "${var.bucket_prefix}-write_only"
   assume_role_policy = data.aws_iam_policy_document.transfer_server_assume_role.json
 }
 
 resource "aws_iam_role_policy" "write_only" {
-  name   = "${var.bucket_prefix}-${aws_transfer_server.transfer_server_public.id}-write_only"
+  name   = "${var.bucket_prefix}-write_only"
   role   = aws_iam_role.write_only.name
   policy = data.aws_iam_policy_document.write_only.json
 }
@@ -110,12 +110,12 @@ data "aws_iam_policy_document" "all" {
 }
 
 resource "aws_iam_role" "all" {
-  name               = "${var.bucket_prefix}-${aws_transfer_server.transfer_server_public.id}-all"
+  name               = "${var.bucket_prefix}-all"
   assume_role_policy = data.aws_iam_policy_document.transfer_server_assume_role.json
 }
 
 resource "aws_iam_role_policy" "all" {
-  name   = "${var.bucket_prefix}-${aws_transfer_server.transfer_server_public.id}-all"
+  name   = "${var.bucket_prefix}-all"
   role   = aws_iam_role.all.name
   policy = data.aws_iam_policy_document.all.json
 }
