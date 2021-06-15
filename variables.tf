@@ -1,4 +1,4 @@
-variable "bucket_prefix" {
+variable "name" {
   default     = "sftp"
-  description = "bucket name prefix"
+  description = "unique name"
 }
