@@ -10,7 +10,7 @@ resource "aws_transfer_server" "transfer_server_public" {
 /* Create S3 Bucket */
 
 resource "aws_s3_bucket" "bucket" {
-  bucket = "${var.bucket-prefix}-${aws_transfer_server.transfer_server_public.id}"
+  bucket = "${var.bucket_prefix}-${aws_transfer_server.transfer_server_public.id}"
   acl    = "private"
 }
 
