@@ -6,7 +6,7 @@ resource "aws_transfer_user" "transfer_server_user" {
   home_directory_type = "LOGICAL"
   home_directory_mappings {
     entry = "/"
-    target = "/${var.s3_bucket_id}/${var.user_name}"
+    target = "/${var.s3_bucket_id}/${var.folder}"
   }
 }
 
