@@ -11,7 +11,6 @@ resource "aws_transfer_server" "transfer_server_public" {
 
 resource "aws_s3_bucket" "bucket" {
   bucket = "${var.name}-${aws_transfer_server.transfer_server_public.id}"
-  acl    = "private"
 }
 
 resource "aws_s3_bucket_ownership_controls" "bucket" {
